@@ -1,9 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from flask import Flask
+from flask import Flask,request
 
-import os
+import os,jwt
 import api
 import task
 import config
@@ -13,6 +13,7 @@ import common
 app = Flask(__name__)
 
 userDict = {}
+secret =  config.get("secret")
 
 shell = {
     "start":"ssserver -c /etc/shadowsocks.json -d start",
@@ -27,16 +28,31 @@ ssConfig = {
     "method": "aes-256-cfb"
 }
 
-
 def addUserTables():
     for k,v in userDict.items():
         netMonitor.add_iptables(k)
-
 
 def writeDict2ss():
     ssConfig['port_password'] = userDict
     common.write_dict_to_file(config.get("ssFile"), ssConfig)
 
+
+@app.route('/addUser', methods=['POST'])
+def getAllUsers():
+    data = jwt.decode(request.data, secret)
+    userDict[int(data['port'])] = data['password']
+    writeDict2ss()
+    os.system(shell['restart'])
+    return
+
+
+@app.route('/deleteUser', methods=['POST'])
+def getAllUsers():
+    data = jwt.decode(request.data, secret)
+    del userDict[int(data['port'])]
+    writeDict2ss()
+    os.system(shell['restart'])
+    return
 
 if __name__ == '__main__':
     api.postHostInfo()
