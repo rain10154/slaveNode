@@ -38,7 +38,7 @@ def writeDict2ss():
 
 
 @app.route('/addUser', methods=['POST'])
-def getAllUsers():
+def addUser():
     data = jwt.decode(request.data, secret)
     userDict[int(data['port'])] = data['password']
     writeDict2ss()
@@ -47,7 +47,7 @@ def getAllUsers():
 
 
 @app.route('/deleteUser', methods=['POST'])
-def getAllUsers():
+def deleteUser():
     data = jwt.decode(request.data, secret)
     del userDict[int(data['port'])]
     writeDict2ss()

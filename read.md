@@ -7,4 +7,4 @@ addUser:(jwt)
 
 pip install requests
 sudo pip install psutil
-pip install python-iptables
+sudo pip install python-iptables
