@@ -1,4 +1,6 @@
 import requests,jwt,common,config,json
+from common import logger
+
 secret = str(config.get("secret"))
 mainIp = str(config.get("main_ip"))
 mainPort = str(config.get("main_port"))
@@ -14,7 +16,9 @@ def getAllUsers():
     else:
         res = {}
         for k,v in value.items:
+            logger.info("all users!k:" + str(k) + ", v:" + str(v))
             res[k] = json.loads(v)
+        logger.info("all users! res:" + json.dumps(res))
         return res
 
 

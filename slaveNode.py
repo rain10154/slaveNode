@@ -60,6 +60,7 @@ if __name__ == '__main__':
     users = api.getAllUsers()
 
     if len(users) != 0:
+        logger.info("users:" + json.dumps(users))
         for k,v in users.items():
             port = int(str(k).split(":")[1])
             password = v['p']
