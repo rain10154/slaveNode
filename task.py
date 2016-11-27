@@ -10,6 +10,8 @@ headers = {'content-type': 'application/json'}
 
 fileName = "flows"
 
+task_time = config.get("task_time")
+
 class myThread (threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
@@ -24,7 +26,7 @@ class myThread (threading.Thread):
             time.sleep(2)
 
     def timer_start(self):
-        t = threading.Timer(60*10, self.test_func)
+        t = threading.Timer(int(task_time), self.test_func)
         t.start()
 
     def test_func(self):

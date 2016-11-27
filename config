@@ -4,5 +4,6 @@
     "secret":"rain12345",
     "ssFile":"/etc/shadowsocks.json",
     "flow":0,
-    "slave_port":10001
+    "slave_port":10001,
+    "task_time":20
 }
