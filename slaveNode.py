@@ -40,7 +40,7 @@ def writeDict2ss():
 
 
 @app.route('/resetUser', methods=['GET'])
-def addUser():
+def resetUser():
     users = api.getAllUsers()
     if len(users) != 0:
         logger.info("users:" + json.dumps(users))
