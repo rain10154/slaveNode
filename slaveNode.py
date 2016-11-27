@@ -39,13 +39,32 @@ def writeDict2ss():
     common.write_dict_to_file(config.get("ssFile"), ssConfig)
 
 
+@app.route('/resetUser', methods=['GET'])
+def addUser():
+    users = api.getAllUsers()
+    if len(users) != 0:
+        logger.info("users:" + json.dumps(users))
+        for k, v in users.items():
+            port = int(str(k).split(":")[1])
+            password = v['p']
+            userDict[port] = password
+        logger.info("start add user tables")
+        addUserTables()
+        logger.info("start write to ssfile")
+        writeDict2ss()
+        logger.info("start ss server, config is" + json.dumps(userDict))
+        os.system(shell['restart'])
+    return "ok"
+
+
 @app.route('/addUser', methods=['POST'])
 def addUser():
     data = jwt.decode(request.data, secret)
     userDict[int(data['port'])] = data['password']
+    addUserTables()
     writeDict2ss()
     os.system(shell['restart'])
-    return
+    return "ok"
 
 
 @app.route('/deleteUser', methods=['POST'])
@@ -55,7 +74,7 @@ def deleteUser():
          del userDict[int(x)]
     writeDict2ss()
     os.system(shell['restart'])
-    return
+    return "ok"
 
 if __name__ == '__main__':
     res = json.loads(api.postHostInfo())
