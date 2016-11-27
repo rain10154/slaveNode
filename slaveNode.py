@@ -70,7 +70,7 @@ if __name__ == '__main__':
         logger.info("start write to ssfile")
         writeDict2ss()
         print ("start ss server, config is" + json.dumps(userDict))
-        os.system(shell['start'])
+        os.system(shell['restart'])
 
     thread = task.myThread()
     thread.start()
