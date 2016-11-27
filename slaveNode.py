@@ -23,7 +23,7 @@ shell = {
 }
 
 ssConfig = {
-    "server": "127.0.0.1",
+    "server": "0.0.0.0",
     "local_port": 1081,
     "timeout": 300,
     "method": "aes-256-cfb"
@@ -76,7 +76,7 @@ if __name__ == '__main__':
     thread.start()
     slave_port = int(config.get("slave_port"))
 
-    app.run(port=slave_port,debug=False)
+    app.run(host='0.0.0.0', port=slave_port,debug=False)
 
 
 
