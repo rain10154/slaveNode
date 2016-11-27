@@ -23,7 +23,7 @@ class myThread (threading.Thread):
     def taskLoad(self):
         self.timer_start()
         while True:
-            time.sleep(10)
+            time.sleep(5)
 
     def timer_start(self):
         t = threading.Timer(int(task_time), self.test_func)
@@ -52,6 +52,7 @@ class myThread (threading.Thread):
         if change.__len__() != 0:
             api.postFlow(change)
             self.writeFlow2File(oldFlow)
+        self.timer_start()
 
     def getOldFlow(self):
         try:
