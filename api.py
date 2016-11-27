@@ -15,7 +15,7 @@ def getAllUsers():
         return {}
     else:
         res = {}
-        for k,v in value.items:
+        for k,v in value.items():
             logger.info("all users!k:" + str(k) + ", v:" + str(v))
             res[k] = json.loads(v)
         logger.info("all users! res:" + json.dumps(res))
