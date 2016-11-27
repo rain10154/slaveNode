@@ -50,8 +50,9 @@ def addUser():
 
 @app.route('/deleteUser', methods=['POST'])
 def deleteUser():
-    data = jwt.decode(request.data, secret)
-    del userDict[int(data['port'])]
+    data = request.get_json()
+    for x in data:
+         del userDict[int(x)]
     writeDict2ss()
     os.system(shell['restart'])
     return
