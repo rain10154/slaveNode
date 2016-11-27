@@ -67,6 +67,7 @@ class myThread (threading.Thread):
 
     def countFlow(self, port, temp):
         port = str(port)
+        logger.info("count flow port:" + port + ", flow:" + json.dumps(temp))
         flow_in = temp['flow_in'][port]
         flow_out = temp['flow_out'][port]
         if self.policy == 0:
