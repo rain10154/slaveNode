@@ -30,6 +30,7 @@ class myThread (threading.Thread):
         t.start()
 
     def test_func(self):
+        logger.info("****** task begin!!!!")
         oldFlow = self.getOldFlow()
         logger.info("old flow:" + json.dumps(oldFlow))
         users = self.getUsers()
