@@ -63,6 +63,7 @@ if __name__ == '__main__':
             port = int(str(k).split(":")[1])
             password = v['p']
             userDict[port] = password
+
         addUserTables()
         writeDict2ss()
         os.system(shell['start'])

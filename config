@@ -1,9 +1,8 @@
 {
     "main_ip":"127.0.0.1",
-    "main_port":6000,
+    "main_port":10000,
     "secret":"rain12345",
     "ssFile":"/etc/shadowsocks.json",
-    "flow":0,        //0表示全算,1表示只算进,2表示只算出
-    "debug":true,
-    "slave_port":6001
+    "flow":0,
+    "slave_port":10001
 }
