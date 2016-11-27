@@ -28,7 +28,7 @@ def get_original_flow():
         try:
             if len(rule.matches)==1:
                 sport = int(rule.matches[0].sport)
-                res['flow_out'][sport] = rule.get_counters()[1]
+                res['flow_out'][sport] = rule.get_counters()[1] / (1024 * 1024)
         except Exception,inst:
             logger.info('[警告]未知的 iptables 规则，如果是其他软件添加的可以忽略。')
             logger.info(inst)
@@ -36,7 +36,7 @@ def get_original_flow():
         try:
             if len(rule.matches)==1:
                 dport = int(rule.matches[0].dport)
-                res['flow_in'][dport] = rule.get_counters()[1]
+                res['flow_in'][dport] = rule.get_counters()[1] / (1024 * 1024)
         except Exception,inst:
             logger.info('[警告]未知的 iptables 规则，如果是其他软件添加的可以忽略。')
             logger.info(inst)

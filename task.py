@@ -42,7 +42,7 @@ class myThread (threading.Thread):
             logger.info('port:' + str(k) + ', now flow:' + str(nowFlow))
             if oldFlow.has_key(k):
                 logger.info('old flow:' + str(oldFlow))
-                if nowFlow != oldFlow:
+                if nowFlow != oldFlow[k]:
                     change[k] = nowFlow - oldFlow[k]
             else:
                 change[k] = nowFlow
@@ -50,6 +50,7 @@ class myThread (threading.Thread):
         logger.info("change flow:" + json.dumps(change))
         if change.__len__() != 0:
             api.postFlow(change)
+            self.writeFlow2File(oldFlow)
 
     def getOldFlow(self):
         try:
