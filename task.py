@@ -36,9 +36,9 @@ class myThread (threading.Thread):
         change = {}
         for k,v in users:
             nowFlow = self.countFlow(k, temp)
-            logger.debug('port:' + str(k) + ', now flow:' + str(nowFlow))
+            logger.info('port:' + str(k) + ', now flow:' + str(nowFlow))
             if oldFlow.has_key(k):
-                logger.debug('old flow:' + str(oldFlow))
+                logger.info('old flow:' + str(oldFlow))
                 if nowFlow != oldFlow:
                     change[k] = nowFlow
             else:
