@@ -31,7 +31,7 @@ def postHostInfo():
     }
     content =  requests.post(url=url, data=json.dumps(data), headers=headers, timeout=60)
     print 'post host info status :' + str(content.status_code) + ', response' + content.content
-
+    return content.content
 
 def postFlow(flows):
     url = 'http://' + mainIp + ':' + mainPort + '/flow'

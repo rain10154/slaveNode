@@ -10,6 +10,7 @@ import task
 import config
 import netMonitor
 import common
+from os import path
 
 app = Flask(__name__)
 
@@ -56,7 +57,11 @@ def deleteUser():
     return
 
 if __name__ == '__main__':
-    api.postHostInfo()
+    res = json.loads(api.postHostInfo())
+    if res.get('time') is not None:
+        oldTime = int(res['time'])
+        if oldTime != common.getOSTime() and path.isfile(config.get("flow_file")):
+            os.remove(config.get("flow_file"))
     users = api.getAllUsers()
 
     if len(users) != 0:

@@ -8,7 +8,7 @@ import config
 
 headers = {'content-type': 'application/json'}
 
-fileName = "flows"
+fileName = config.get("flow_file")
 
 task_time = config.get("task_time")
 
@@ -23,7 +23,7 @@ class myThread (threading.Thread):
     def taskLoad(self):
         self.timer_start()
         while True:
-            time.sleep(5)
+            time.sleep(60)
 
     def timer_start(self):
         t = threading.Timer(int(task_time), self.test_func)
