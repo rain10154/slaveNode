@@ -66,6 +66,7 @@ class myThread (threading.Thread):
         fp.close()
 
     def countFlow(self, port, temp):
+        port = str(port)
         flow_in = temp['flow_in'][port]
         flow_out = temp['flow_out'][port]
         if self.policy == 0:
