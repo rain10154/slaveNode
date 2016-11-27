@@ -23,7 +23,7 @@ class myThread (threading.Thread):
     def taskLoad(self):
         self.timer_start()
         while True:
-            time.sleep(2)
+            time.sleep(1)
 
     def timer_start(self):
         t = threading.Timer(int(task_time), self.test_func)
@@ -31,7 +31,9 @@ class myThread (threading.Thread):
 
     def test_func(self):
         oldFlow = self.getOldFlow()
+        logger.info("old flow:" + json.dumps(oldFlow))
         users = self.getUsers()
+        logger.info("users:" + json.dumps(users))
         temp = netMonitor.get_original_flow()
         change = {}
         for k,v in users:
@@ -44,6 +46,7 @@ class myThread (threading.Thread):
             else:
                 change[k] = nowFlow
             oldFlow[k] = nowFlow
+        logger.info("change flow:" + json.dumps(change))
         if change.__len__() != 0:
             api.postFlow(change)
 
