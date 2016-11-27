@@ -15,7 +15,7 @@ def get_mac_address():
 
 
 def getOSTime():
-    return psutil.boot_time()
+    return int(psutil.boot_time())
 
 
 def _decode_list(data):
