@@ -40,5 +40,4 @@ def get_original_flow():
         except Exception,inst:
             logger.info('[警告]未知的 iptables 规则，如果是其他软件添加的可以忽略。')
             logger.info(inst)
-    logger.info("res:" + json.dumps(res))
     return res

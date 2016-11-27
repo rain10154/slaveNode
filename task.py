@@ -35,14 +35,15 @@ class myThread (threading.Thread):
         users = self.getUsers()
         logger.info("users:" + json.dumps(users))
         temp = netMonitor.get_original_flow()
+        logger.info("new flow:" + json.dumps(temp))
         change = {}
-        for k,v in users:
+        for k,v in users.items():
             nowFlow = self.countFlow(k, temp)
             logger.info('port:' + str(k) + ', now flow:' + str(nowFlow))
             if oldFlow.has_key(k):
                 logger.info('old flow:' + str(oldFlow))
                 if nowFlow != oldFlow:
-                    change[k] = nowFlow
+                    change[k] = nowFlow - oldFlow[k]
             else:
                 change[k] = nowFlow
             oldFlow[k] = nowFlow
