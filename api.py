@@ -25,7 +25,7 @@ def postHostInfo():
         'time':common.getOSTime(),
         'port':slave_port
     }
-    content =  requests.post(url=url, data=data, headers=headers, timeout=60)
+    content =  requests.post(url=url, data=json.dumps(data), headers=headers, timeout=60)
     print 'post host info status :' + str(content.status_code) + ', response' + content.content
 
 
@@ -36,4 +36,4 @@ def postFlow(flows):
         'mac':common.get_mac_address(),
         'flow':flows
     }
-    return requests.post(url=url, data=data, headers=headers, timeout=60)
+    return requests.post(url=url, data=json.dumps(data), headers=headers, timeout=60)
