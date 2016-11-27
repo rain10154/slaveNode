@@ -69,7 +69,7 @@ if __name__ == '__main__':
         addUserTables()
         logger.info("start write to ssfile")
         writeDict2ss()
-        logger.info("start ss server, config is" + json.dumps(dict))
+        print ("start ss server, config is" + json.dumps(userDict))
         os.system(shell['start'])
 
     thread = task.myThread()
