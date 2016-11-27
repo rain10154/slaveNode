@@ -3,7 +3,8 @@
 
 from flask import Flask,request
 
-import os,jwt
+from common import logger
+import os,jwt,json
 import api
 import task
 import config
@@ -63,9 +64,11 @@ if __name__ == '__main__':
             port = int(str(k).split(":")[1])
             password = v['p']
             userDict[port] = password
-
+        logger.info("start add user tables")
         addUserTables()
+        logger.info("start write to ssfile")
         writeDict2ss()
+        logger.info("start ss server, config is" + json.dumps(dict))
         os.system(shell['start'])
 
     thread = task.myThread()
